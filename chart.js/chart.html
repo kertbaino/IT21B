@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motorcycle Sales - Chart.js Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Add some styling to center the charts on the page */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        canvas {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Motorcycle Sales Data: Bar and Pie Charts</h1>
+    
+    <!-- Bar Chart: Motorcycle Sales by Month -->
+    <canvas id="barChart" width="400" height="200"></canvas>
+
+    <!-- Pie Chart: Motorcycle Sales by Color -->
+    <canvas id="pieChart" width="400" height="200"></canvas>
+
+    <script>
+        // Bar Chart Configuration: Motorcycle Sales by Month
+        const barChartCtx = document.getElementById('barChart').getContext('2d');
+        const barChart = new Chart(barChartCtx, {
+            type: 'bar', // Type of chart (bar chart)
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May'], // X-axis labels (Months)
+                datasets: [{
+                    label: 'Motorcycle Sales (units)', // Label for the bar chart
+                    data: [50, 75, 40, 90, 30], // Example data for motorcycle sales per month
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)', // Bar color
+                    borderColor: 'rgba(54, 162, 235, 1)', // Bar border color
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true // Start Y-axis from 0
+                    }
+                },
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Monthly Motorcycle Sales' // Title for the bar chart
+                    }
+                }
+            }
+        });
+
+        // Pie Chart Configuration: Motorcycle Sales by Color
+        const pieChartCtx = document.getElementById('pieChart').getContext('2d');
+        const pieChart = new Chart(pieChartCtx, {
+            type: 'pie', // Type of chart (pie chart)
+            data: {
+                labels: ['Red', 'Blue', 'Black'], // Labels for the pie sections (motorcycle colors)
+                datasets: [{
+                    data: [200, 150, 50], // Sales data for each color (example numbers)
+                    backgroundColor: ['red', 'blue', 'black'], // Colors for each section
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Motorcycle Sales by Color' // Title for the pie chart
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
